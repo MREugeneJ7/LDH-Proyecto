@@ -19,7 +19,10 @@ import static org.bytedeco.javacpp.opencv_highgui.imshow;
 import static org.bytedeco.javacpp.opencv_imgproc.putText;
 import static org.bytedeco.javacpp.opencv_imgproc.rectangle;
 
-
+/**
+ * @brief Modelo de entrenamiento 
+ *
+ */
 public class TinyYoloModel {
 
     private static ComputationGraph model;
@@ -34,17 +37,34 @@ public class TinyYoloModel {
             throw new RuntimeException(e);
         }
     }
-
+    
     static final TinyYoloModel yolo = new TinyYoloModel();   
 
+    /**
+     * 
+     * @return Modelo de Entrenamiento
+     */
     public static TinyYoloModel getPretrainedModel() {
         return yolo;
     }
     
+    /**
+     * 
+     * @return Tabla formateada del Modelo de Entrenamiento
+     */
     public static String getSummary() {
         return model.summary();
     }
 
+    /**
+     * @brief Marca los objetos detectados en las imágenes
+     * @param file
+     * @param imageWidth
+     * @param imageHeight
+     * @param newBoundingBOx
+     * @param winName
+     * @throws Exception
+     */
     public void markObjectWithBoundingBox(Mat file, int imageWidth, int imageHeight, boolean newBoundingBOx,String winName) throws Exception {
         int W = 640; // width of the video frame 
         int H = 360; // Height of the video frame
@@ -65,6 +85,15 @@ public class TinyYoloModel {
         imshow(winName, file);
     }
 
+    /**
+     * @brief Extrae imágenes de los fotogramas del vídeo analizado 
+     * la procesa y las almacena en un array consumible por el modelo 
+     * @param file
+     * @param width
+     * @param height
+     * @return INDArray de imágenes
+     * @throws IOException
+     */
     INDArray prepareImage(Mat file, int width, int height) throws IOException {
         NativeImageLoader loader = new NativeImageLoader(height, width, 3);
         ImagePreProcessingScaler imagePreProcessingScaler = new ImagePreProcessingScaler(0, 1);
@@ -73,6 +102,9 @@ public class TinyYoloModel {
         return indArray;
     }
 
+    /**
+     * @brief Crea las etiquetas de los objetos a detectar
+     */
     void createObjectLabels() {
         if (labels == null) {
             String label = "aeroplane\n" + "bicycle\n" + "bird\n" + "boat\n" + "bottle\n" + "bus\n" + "car\n" +
@@ -87,6 +119,14 @@ public class TinyYoloModel {
         }
     }
 
+    /**
+     * 
+     * @param file
+     * @param gridWidth
+     * @param gridHeight
+     * @param w
+     * @param h
+     */
     void markObjectWithBoundingBox(Mat file, int gridWidth, int gridHeight, int w, int h) {
 
         if (predictedObjects == null) {
@@ -105,6 +145,11 @@ public class TinyYoloModel {
         }
     }
 
+    /**
+     * @brief Eliminar objetos que tienen intersección con la supresión máxima
+     * @param detectedObjects
+     * @param maxObjectDetect
+     */
     static void removeObjectsIntersectingWithMax(ArrayList<DetectedObject> detectedObjects, DetectedObject maxObjectDetect) {
         double[] bottomRightXY1 = maxObjectDetect.getBottomRightXY();
         double[] topLeftXY1 = maxObjectDetect.getTopLeftXY();
@@ -135,6 +180,15 @@ public class TinyYoloModel {
         detectedObjects.removeAll(removeIntersectingObjects);
     }
 
+    /**
+     * 
+     * @param file
+     * @param gridWidth
+     * @param gridHeight
+     * @param w
+     * @param h
+     * @param obj
+     */
     void markObjectWithBoundingBox(Mat file, int gridWidth, int gridHeight, int w, int h, DetectedObject obj) {
 
         double[] xy1 = obj.getTopLeftXY();
