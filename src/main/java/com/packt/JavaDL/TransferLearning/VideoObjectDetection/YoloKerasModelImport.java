@@ -30,11 +30,11 @@ public class YoloKerasModelImport {
 	public static void main(String[] args)
 			throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
 		String pretrainedModelPath = "bin/yolo.h5";
-		//ComputationGraph network = KerasModelImport.importKerasModelAndWeights(pretrainedModelPath);
+		ComputationGraph network = KerasModelImport.importKerasModelAndWeights(pretrainedModelPath);
 
-		//ModelSerializer.writeModel(network, "bin/Yolo_v3.zip", false);
+		ModelSerializer.writeModel(network, "bin/Yolo_v3.zip", false);
 
-		//String filename = "tiny-yolo-voc.h5";
+		String filename = "tiny-yolo-voc.h5";
 		ComputationGraph graph = KerasModelImport.importKerasModelAndWeights(pretrainedModelPath, false);
 		INDArray priors = Nd4j.create(priorBoxes);
 
