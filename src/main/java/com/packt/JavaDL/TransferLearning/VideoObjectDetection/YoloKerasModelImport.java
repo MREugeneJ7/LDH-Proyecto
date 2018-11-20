@@ -27,6 +27,12 @@ public class YoloKerasModelImport {
 	private static long seed;
 	private static WorkspaceMode workspaceMode;
 
+/**
+ * @brief Clase que importa el Modelo
+ * @throw IOException
+ * @throw UnsupportedKerasConfigurationException
+ * @throw InvalidKerasConfigurationException
+ */
 	public static void main(String[] args)
 			throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
 		String pretrainedModelPath = "bin/yolo.h5";
