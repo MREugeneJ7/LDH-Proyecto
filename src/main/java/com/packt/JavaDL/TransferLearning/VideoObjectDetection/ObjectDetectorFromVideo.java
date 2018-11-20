@@ -30,7 +30,7 @@ public class ObjectDetectorFromVideo {
  * @brief Método de comienzo del algoritmo
  * @param videoFileName
  * @param model
- *
+ * throw Exception
  */
     public void startRealTimeVideoDetection(String videoFileName, TinyYoloModel model) throws java.lang.Exception {
         windowName = "Object Detection from Video";
