@@ -9,6 +9,10 @@ import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.OpenCVFrameConverter;
 
+/**
+ * @brief Detector de Objetos en un video
+ *
+ */
 public class ObjectDetectorFromVideo {
     private volatile Mat[] v = new Mat[1];
     private String windowName;
@@ -21,6 +25,13 @@ public class ObjectDetectorFromVideo {
         new ObjectDetectorFromVideo().startRealTimeVideoDetection(videoPath, model);
     }
 
+    
+/**
+ * @brief Método de comienzo del algoritmo
+ * @param videoFileName
+ * @param model
+ *
+ */
     public void startRealTimeVideoDetection(String videoFileName, TinyYoloModel model) throws java.lang.Exception {
         windowName = "Object Detection from Video";
         FFmpegFrameGrabber frameGrabber = new FFmpegFrameGrabber(videoFileName);
