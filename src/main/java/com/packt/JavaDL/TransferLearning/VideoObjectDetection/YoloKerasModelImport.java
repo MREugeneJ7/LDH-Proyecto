@@ -18,7 +18,14 @@ import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.learning.config.Adam;
-
+/**
+ * LDH Proyecto final
+ * YoloKerasModelImport.java
+ * Purpose: Clase que importa el modelo de entrenamiento
+ *
+ * @author Grupo Practica Yolo
+ * @version 1.0.0 21/11/2018
+ */
 public class YoloKerasModelImport {
 	public static int nBoxes = 5;
 	public static double[][] priorBoxes = { { 1.08, 1.19 }, { 3.42, 4.41 }, { 6.63, 11.38 }, { 9.42, 5.11 },
@@ -26,7 +33,8 @@ public class YoloKerasModelImport {
 
 	private static long seed;
 	private static WorkspaceMode workspaceMode;
-
+	
+	/** Metodo main de la clase */
 	public static void main(String[] args)
 			throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
 		String pretrainedModelPath = "bin/yolo.h5";

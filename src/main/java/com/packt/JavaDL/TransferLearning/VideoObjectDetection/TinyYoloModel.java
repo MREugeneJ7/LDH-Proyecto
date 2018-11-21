@@ -20,8 +20,12 @@ import static org.bytedeco.javacpp.opencv_imgproc.putText;
 import static org.bytedeco.javacpp.opencv_imgproc.rectangle;
 
 /**
- * @brief Modelo de entrenamiento 
+ * LDH Proyecto final
+ * TinyYoloModel.java
+ * Purpose: Clase que crea el modelo de entrenamiento
  *
+ * @author Grupo Practica Yolo
+ * @version 1.0.0 21/11/2018
  */
 public class TinyYoloModel {
 
@@ -29,6 +33,9 @@ public class TinyYoloModel {
     private List<DetectedObject> predictedObjects;
     private HashMap<Integer, String> labels;
 
+    /**
+     * @brief constructor de la clase Tiny yolo model
+     */
     private TinyYoloModel() {
         try {
             model = (ComputationGraph) new TinyYOLO().initPretrained();
@@ -41,7 +48,7 @@ public class TinyYoloModel {
     static final TinyYoloModel yolo = new TinyYoloModel();   
 
     /**
-     * 
+     * @brief devuelve el modelo de entrenamiento
      * @return Modelo de Entrenamiento
      */
     public static TinyYoloModel getPretrainedModel() {

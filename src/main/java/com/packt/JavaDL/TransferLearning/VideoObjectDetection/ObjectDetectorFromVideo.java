@@ -8,11 +8,19 @@ import org.bytedeco.javacpp.opencv_core.Mat;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.OpenCVFrameConverter;
-
+/**
+ * LDH Proyecto final
+ * ObjectDetectorFromVideo.java
+ * Purpose: Clase que detecta objetos en videos dado un modelo entrenado
+ *
+ * @author Grupo Practica Yolo
+ * @version 1.0.0 21/11/2018
+ */
 public class ObjectDetectorFromVideo {
     private volatile Mat[] v = new Mat[1];
     private String windowName;
 
+	/** Metodo main de la clase */
     public static void main(String[] args) throws java.lang.Exception {
         String videoPath = "data/videoSample.mp4";
         TinyYoloModel model = TinyYoloModel.getPretrainedModel();
@@ -20,7 +28,13 @@ public class ObjectDetectorFromVideo {
         System.out.println(TinyYoloModel.getSummary());
         new ObjectDetectorFromVideo().startRealTimeVideoDetection(videoPath, model);
     }
-
+    
+    /**
+     * @brief Lanza la aplicación que detecta objetos en videos
+     * @param videoFileName dirección del video en el que detectar cosas
+     * @param model modelo entrenado
+     * @throws java.lang.Exception
+     */
     public void startRealTimeVideoDetection(String videoFileName, TinyYoloModel model) throws java.lang.Exception {
         windowName = "Object Detection from Video";
         FFmpegFrameGrabber frameGrabber = new FFmpegFrameGrabber(videoFileName);
