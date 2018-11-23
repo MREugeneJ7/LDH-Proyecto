@@ -14,7 +14,7 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
  * Purpose: Clase que detecta objetos en videos dado un modelo entrenado
  *
  * @author Grupo Practica Yolo
- * @version 1.0.0 21/11/2018
+ * @version 1.0.0 22/11/2018
  */
 public class ObjectDetectorFromVideo {
     private volatile Mat[] v = new Mat[1];
