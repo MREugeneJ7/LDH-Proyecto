@@ -22,8 +22,11 @@ public class ObjectDetectorFromVideo {
 
 	/** Metodo main de la clase */
     public static void main(String[] args) throws java.lang.Exception {
-        String videoPath = "data/videoSample.mp4";
-        TinyYoloModel model = TinyYoloModel.getPretrainedModel();
+    	String videoPath;
+    	if(args.length == 1) videoPath = args[0];
+    	else videoPath = "data/videoSample.mp4";
+        
+    	TinyYoloModel model = TinyYoloModel.getPretrainedModel();
         
         System.out.println(TinyYoloModel.getSummary());
         new ObjectDetectorFromVideo().startRealTimeVideoDetection(videoPath, model);
